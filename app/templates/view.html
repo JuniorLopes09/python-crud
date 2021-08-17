@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+</head>
+<body>
+
+<div class="col-8 m-auto pt-2 pb-2 text-center">
+    <h1>{{mode}}</h1>
+
+</div>
+<div class="col-8 m-auto pt-2 pb-2 text-center">
+    <hr>
+    <form name="form" id="form" action="/{{action}}/{{id}}" method="post">
+    {% csrf_token %}
+        <div class="form-group mt-4 text-center">UF</div>{{form.uf}}<br>
+        <div class="form-group mt-4 text-center">Nome</div>{{form.nome}}<br>
+        <div class="form-group mt-4 text-center">Email</div>{{form.email}}<br>
+        <div class="form-group mt-4 text-center">Telefone</div>{{form.telefone}}<br>
+        <div class="form-group mt-4 text-center">CNPJ</div>{{form.cnpj}}<br>
+        <div class="form-group mt-4 text-center">Data de abertura</div>{{form.data_abertura}}<br>
+        <div class="form-group mt-4 text-center">Atividades Secundárias</div>{{form.atividades_secundarias}}<br>
+    <hr>
+    <a href="/" class="btn btn-primary">Voltar</a>
+        {% if mode != "Visualização" %}
+    <input type="submit" class="btn btn-success" value="Salvar">
+        {% endif %}
+    </form>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD EasyGestor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="col-8 m-auto pt-2 pb-2 text-center">
+    <h1>Easy Gestor</h1>
+</div>
+
+<div class="col-8 m-auto pt-2 pb-2 text-center">
+    <form  method="get">
+        <input type="text" id="search" name="search" class="form-control" placeholder="Buscar...">
+    </form>
+</div>
+
+<div class="col-8 m-auto pt-2 pb-2">
+    <table class="table table-striped table-responsive text-center">
+      <thead class="thead-light">
+        <tr class="table-dark">
+          <th scope="col">#</th>
+          <th scope="col">UF</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">CNPJ</th>
+          <th scope="col">Data de Abertura</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for entry in db %}
+        <tr>
+          <th>{{entry.id}}</th>
+          <td>{{entry.uf}}</td>
+          <td>{{entry.nome}}</td>
+          <td>{{entry.email}}</td>
+          <td>{{entry.telefone}}</td>
+          <td>{{entry.cnpj}}</td>
+          <td>{{entry.data_abertura}}</td>
+          <td>
+              <a href="view/{{entry.id}}" class="btn" title="Visualizar">👁</a>
+              <a href="edit/{{entry.id}}" class="btn" title="Editar">✎</a>
+              <a href="delete/{{entry.id}}" class="btn" title="Excluir">❌</a>.
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</div>
+<div style="font-size: 20px;" class="col-8 m-auto pt-2 pb-2 text-center">
+    {% if db.has_previous %}
+    <a href="?page={{db.previous_page_number}}">⬅</a>
+    {% endif %}
+    {{db.number}}
+    {% if db.has_next %}
+    <a href="?page={{db.next_page_number}}">➡</a>
+    {% endif %}
+</div>
+<div class="col-8 m-auto pt-2 pb-2 text-center">
+    <a href="/form" class="btn btn-success">Adicionar</a>
+    <a href="/auto-form" class="btn btn-primary">Cadastro Automático</a>
+</div>
+
+</body>
+</html>
